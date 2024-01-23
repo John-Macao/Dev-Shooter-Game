@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://emxkiu48kq5d"]
+
+[ext_resource type="Texture2D" uid="uid://b1lc7pslxls4v" path="res://assets/enemies/big_demon_dead.png" id="1_iwync"]
+[ext_resource type="Texture2D" uid="uid://dh1pkqeehalv7" path="res://assets/enemies/big_demon_idle_anim_f0.png" id="2_51hpg"]
+[ext_resource type="Texture2D" uid="uid://dc68p3bu5b85h" path="res://assets/enemies/big_demon_idle_anim_f1.png" id="3_acqwq"]
+[ext_resource type="Texture2D" uid="uid://duk010bl8gh7n" path="res://assets/enemies/big_demon_idle_anim_f2.png" id="4_8v0br"]
+[ext_resource type="Texture2D" uid="uid://bjc2ru4noon4n" path="res://assets/enemies/big_demon_idle_anim_f3.png" id="5_ywh10"]
+[ext_resource type="Texture2D" uid="uid://h7frvqnfurcy" path="res://assets/enemies/big_demon_run_anim_f0.png" id="6_ciev7"]
+[ext_resource type="Texture2D" uid="uid://bwrk247d74vcu" path="res://assets/enemies/big_demon_run_anim_f1.png" id="7_6daok"]
+[ext_resource type="Texture2D" uid="uid://boa4vd77tif72" path="res://assets/enemies/big_demon_run_anim_f2.png" id="8_3vwq8"]
+[ext_resource type="Texture2D" uid="uid://11oguefst0vi" path="res://assets/enemies/big_demon_run_anim_f3.png" id="9_b45gf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3i8n7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iwync")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_51hpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_acqwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8v0br")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ywh10")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ciev7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6daok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3vwq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b45gf")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irxrq"]
+size = Vector2(19.5652, 27.5652)
+
+[node name="Goblin" type="CharacterBody2D"]
+scale = Vector2(2.3, 2.3)
+collision_layer = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3i8n7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.217391, 4.21739)
+shape = SubResource("RectangleShape2D_irxrq")
