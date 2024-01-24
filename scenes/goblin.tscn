@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://emxkiu48kq5d"]
+[gd_scene load_steps=14 format=3 uid="uid://emxkiu48kq5d"]
 
 [ext_resource type="Texture2D" uid="uid://b1lc7pslxls4v" path="res://assets/enemies/big_demon_dead.png" id="1_iwync"]
+[ext_resource type="Script" path="res://scenes/goblin.gd" id="1_o7ld7"]
 [ext_resource type="Texture2D" uid="uid://dh1pkqeehalv7" path="res://assets/enemies/big_demon_idle_anim_f0.png" id="2_51hpg"]
 [ext_resource type="Texture2D" uid="uid://dc68p3bu5b85h" path="res://assets/enemies/big_demon_idle_anim_f1.png" id="3_acqwq"]
 [ext_resource type="Texture2D" uid="uid://duk010bl8gh7n" path="res://assets/enemies/big_demon_idle_anim_f2.png" id="4_8v0br"]
@@ -58,15 +59,36 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irxrq"]
 size = Vector2(19.5652, 27.5652)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4obp1"]
+size = Vector2(19.5652, 27.3913)
+
 [node name="Goblin" type="CharacterBody2D"]
 scale = Vector2(2.3, 2.3)
 collision_layer = 4
+script = ExtResource("1_o7ld7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3i8n7")
 animation = &"idle"
 autoplay = "idle"
+frame = 2
+frame_progress = 0.30434
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.217391, 4.21739)
 shape = SubResource("RectangleShape2D_irxrq")
+
+[node name="EntranceTimer" type="Timer" parent="."]
+wait_time = 1.25
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.217391, 4.13043)
+shape = SubResource("RectangleShape2D_4obp1")
+
+[connection signal="timeout" from="EntranceTimer" to="." method="_on_entrance_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
