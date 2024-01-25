@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var speed : int
 var screen_size : Vector2
+signal  shoot;
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -12,6 +13,11 @@ func get_input():
 	#keyboard input
 	var input_dir = Input.get_vector("left","right","up","down")
 	velocity = input_dir.normalized() * speed;
+	
+	#Mouse clicks
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var dir = get_global_mouse_position() - position 
+		shoot.emit(position, dir)
 
 func _physics_process(delta):
 	#player movement

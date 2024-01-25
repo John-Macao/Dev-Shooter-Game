@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdpyxjl51eavc"]
+
+[ext_resource type="Texture2D" uid="uid://5ust0llilfdl" path="res://assets/bullet.png" id="1_bxxug"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_71rv2"]
+radius = 5.5
+
+[node name="bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bxxug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_71rv2")
