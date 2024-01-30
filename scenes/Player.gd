@@ -3,11 +3,13 @@ extends CharacterBody2D
 var speed : int
 var screen_size : Vector2
 signal  shoot;
+var can_shoot : bool 
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	position = screen_size / 2;
 	speed=200;
+	can_shoot=true
 
 func get_input():
 	#keyboard input
@@ -15,9 +17,11 @@ func get_input():
 	velocity = input_dir.normalized() * speed;
 	
 	#Mouse clicks
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_shoot:
 		var dir = get_global_mouse_position() - position 
 		shoot.emit(position, dir)
+		can_shoot=false;
+		$ShootTimer.start();
 
 func _physics_process(delta):
 	#player movement
@@ -42,3 +46,7 @@ func _physics_process(delta):
 
 
 
+
+
+func _on_shoot_timer_timeout():
+	can_shoot = true;
