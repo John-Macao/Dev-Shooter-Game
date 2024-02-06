@@ -27,6 +27,7 @@ func _physics_process(delta):
 	#player movement
 	get_input()
 	move_and_slide()
+	
 	#limit  movement  to window size
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
