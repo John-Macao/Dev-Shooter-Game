@@ -8,8 +8,9 @@ var lives: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	max_enemies=10;
+	max_enemies=100;
 	wave=1
+	
 	lives=3
 	$Hud/LivesLabel.text = "X " + str(lives)
 	$Hud/WaveLabel.text = "WAVE: " + str(wave)
@@ -21,6 +22,6 @@ func _process(delta):
 
 func _on_enemy_spawner_hit_p():
 	#aux=aux+1
-	#print("Enemy hit player: " + str(aux))
-	lives -= 1;
-	$Hud/LivesLabel.text = "X " + str(lives)
+	print("Enemy hit player: " + str(aux))
+	#lives -= 1;
+	#$Hud/LivesLabel.text = "X " + str(lives)
