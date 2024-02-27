@@ -14,10 +14,10 @@ var textures_array = [coffe_box, health_box, gun_box];
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite2D.texture = textures_array[item_type];
-
+	
 
 func _on_body_entered(body):
-	print("collition drop")
+	#print("collition drop")
 	if item_type == 0 :
 		body.boost();
 		print("Coffe")

@@ -53,7 +53,7 @@ func die():
 func drop_item():
 	var item = item_scene.instantiate();
 	item.position = position
-	item.item_type = randf_range(0,2);
+	item.item_type = randf_range(0,3);
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 	
