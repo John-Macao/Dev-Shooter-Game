@@ -11,12 +11,14 @@ signal  shoot;
 var can_shoot : bool 
 
 func _ready():
-	can_shoot=true
 	screen_size = get_viewport_rect().size
+	reset();
+
+func reset():
+	can_shoot=true
 	position = screen_size / 2;
 	speed=START_SPEED;
 	$ShootTimer.wait_time = NORMAL_SHOT
-	
 
 func get_input():
 	#keyboard input

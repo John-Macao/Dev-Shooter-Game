@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var main = get_node("/root/Main");
 @onready var player = get_node("/root/Main/Player");
+
+var explosion_scene := preload("res://scenes/explosion.tscn")
 var item_scene := preload("res://scenes/item.tscn")
 
 signal  hit_player
@@ -10,6 +12,7 @@ var alive : bool
 var entered : bool
 var speed : int = 100
 var direction : Vector2
+const DROP_CHANCE : float = 0.1
 
 func _ready():
 	var screen_rect = get_viewport_rect()
@@ -48,7 +51,15 @@ func die():
 	$AnimatedSprite2D.stop();
 	$AnimatedSprite2D.animation = "dead"
 	$Area2D/CollisionShape2D.set_deferred("desabled", true)
-	drop_item();
+	if randf() <= DROP_CHANCE:
+		drop_item();
+	
+	var explosion = explosion_scene.instantiate();
+	explosion.position = position
+	main.add_child(explosion)
+	#explosion.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	
 	
 func drop_item():
 	var item = item_scene.instantiate();
